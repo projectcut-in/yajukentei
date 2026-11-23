@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本文化・伝統工芸検定（日文検）｜公益財団法人 日本文化検定協会</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Noto Serif JP & Noto Sans JP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kinari: '#F9F8F6',      // ベース背景（清潔感のあるオフホワイト・生成り）
+                        aitetsu: '#1E3A5F',     // メインカラー（深い藍鉄色）
+                        aitetsuDark: '#142842', // 濃い藍鉄色
+                        matsuba: '#2E5A44',     // 主要アクションカラー（安心感のある深い緑・松葉色）
+                        matsubaDark: '#214231', // 濃い松葉色
+                        kincha: '#B38836',      // アクセントカラー（落ち着いた金茶・琥珀色）
+                        sumi: '#222222',        // メインテキスト（墨色）
+                        usuzumi: '#555555',     // サブテキスト（落ち着いたグレー）
+                        enji: '#9E2A2B',        // 重要ステータス用（落ち着いた臙脂色）
+                    },
+                    fontFamily: {
+                        serif: ['"Noto Serif JP"', 'serif'],
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #F9F8F6;
+            color: #222222;
+            font-family: 'Noto Sans JP', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-serif-jp {
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        /* アコーディオンアニメーション */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 360px;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 1. トップユーティリティバー -->
+    <div class="bg-aitetsuDark text-white/90 text-xs border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-between">
+            <div class="flex items-center gap-2 truncate">
+                <span class="font-medium text-white/80">公益財団法人 日本淫夢検定協会 公式ポータルサイト</span>
+                <span class="hidden md:inline text-white/40">|</span>
+            </div>
+            <div class="flex items-center gap-4 shrink-0">
+                <a href="#faq" class="hover:text-white underline-offset-4 hover:underline">よくある質問</a>
+                <span class="text-white/30">|</span>
+                <a href="#footer-contact" class="hover:text-white underline-offset-4 hover:underline">お問い合わせ</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. メインヘッダー -->
+    <header class="sticky top-0 z-40 bg-white border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- ロゴエリア（検定名＋英語表記ロックアップ） -->
+                <a href="#" class="flex items-center gap-3 shrink-0 group focus:outline-none">
+                    <span class="w-1.5 h-10 bg-aitetsu rounded-xs relative overflow-hidden shrink-0">
+                        <span class="absolute bottom-0 inset-x-0 h-3 bg-kincha"></span>
+                    </span>
+                    <div class="flex flex-col">
+                        <div class="flex items-center gap-2">
+                            <span class="font-serif-jp font-bold text-lg sm:text-[22px] text-aitetsu tracking-tight leading-tight group-hover:text-aitetsuDark transition">
+                                日本淫夢・野獣検定
+                            </span>
+                            <span class="hidden sm:inline-block text-[10px] font-bold text-aitetsu bg-kinari border border-aitetsu/30 px-1.5 py-0.5 rounded">
+                                野獣検
+                            </span>
+                        </div>
+                        <span class="text-[9px] sm:text-[10.5px] font-sans font-semibold text-usuzumi tracking-[0.11em] uppercase mt-0.5 leading-none">
+                            JAPANESE SEX DREAM &amp; MR.BEAST TEST
+                        </span>
+                    </div>
+                </a>
+
+                <!-- 右側ユーティリティボタン（PC） -->
+                <div class="hidden lg:flex items-center gap-2.5">
+                    <button onclick="openModal('applyModal', 'individual')" class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-matsuba hover:bg-matsubaDark text-white text-xs font-bold shadow-sm transition">
+                        <i data-lucide="user" class="w-4 h-4"></i>
+                        個人のお申し込み
+                    </button>
+                    <button onclick="openModal('applyModal', 'group')" class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-aitetsu hover:bg-aitetsuDark text-white text-xs font-bold shadow-sm transition">
+                        <i data-lucide="building-2" class="w-4 h-4"></i>
+                        団体のお申し込み
+                    </button>
+                    <button onclick="openModal('resultModal')" class="flex items-center gap-1.5 px-4 py-2.5 rounded-lg border-2 border-aitetsu text-aitetsu hover:bg-aitetsu/5 text-xs font-bold transition">
+                        <i data-lucide="file-check-2" class="w-4 h-4"></i>
+                        合否結果閲覧
+                    </button>
+                </div>
+
+                <!-- モバイルメニューボタン -->
+                <button id="mobileMenuBtn" class="lg:hidden p-2.5 rounded-lg text-aitetsu hover:bg-gray-100 transition" aria-label="メニューを開く">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- グローバルナビゲーションバー（PC） -->
+        <nav class="hidden lg:block bg-kinari border-t border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <ul class="grid grid-cols-5 divide-x divide-gray-200 text-center text-sm font-bold text-sumi">
+                    <li>
+                        <a href="#quick-guide" class="block py-3 hover:bg-white hover:text-aitetsu transition border-b-2 border-transparent hover:border-aitetsu">受験案内</a>
+                    </li>
+                    <li>
+                        <a href="#schedule" class="block py-3 hover:bg-white hover:text-aitetsu transition border-b-2 border-transparent hover:border-aitetsu">試験日程・検定料</a>
+                    </li>
+                    <li>
+                        <a href="#grades" class="block py-3 hover:bg-white hover:text-aitetsu transition border-b-2 border-transparent hover:border-aitetsu">各級の目安</a>
+                    </li>
+                    <li>
+                        <a href="#study" class="block py-3 hover:bg-white hover:text-aitetsu transition border-b-2 border-transparent hover:border-aitetsu">学習・過去問</a>
+                    </li>
+                    <li>
+                        <a href="#about" class="block py-3 hover:bg-white hover:text-aitetsu transition border-b-2 border-transparent hover:border-aitetsu">検定について</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- モバイルドロワーメニュー -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-200 px-4 pt-3 pb-6 space-y-2 shadow-lg">
+            <a href="#quick-guide" class="mobile-link block py-2.5 px-3 rounded-lg text-sm font-bold text-sumi hover:bg-kinari">受験案内</a>
+            <a href="#schedule" class="mobile-link block py-2.5 px-3 rounded-lg text-sm font-bold text-sumi hover:bg-kinari">試験日程・検定料</a>
+            <a href="#grades" class="mobile-link block py-2.5 px-3 rounded-lg text-sm font-bold text-sumi hover:bg-kinari">各級の目安</a>
+            <a href="#study" class="mobile-link block py-2.5 px-3 rounded-lg text-sm font-bold text-sumi hover:bg-kinari">学習・過去問</a>
+            <a href="#about" class="mobile-link block py-2.5 px-3 rounded-lg text-sm font-bold text-sumi hover:bg-kinari">検定について</a>
+            <div class="pt-3 border-t border-gray-200 space-y-2">
+                <button onclick="openModal('applyModal', 'individual')" class="w-full py-3 rounded-lg bg-matsuba text-white text-xs font-bold flex items-center justify-center gap-2">
+                    <i data-lucide="user" class="w-4 h-4"></i> 個人のお申し込み
+                </button>
+                <button onclick="openModal('applyModal', 'group')" class="w-full py-3 rounded-lg bg-aitetsu text-white text-xs font-bold flex items-center justify-center gap-2">
+                    <i data-lucide="building-2" class="w-4 h-4"></i> 団体のお申し込み
+                </button>
+                <button onclick="openModal('resultModal')" class="w-full py-3 rounded-lg border-2 border-aitetsu text-aitetsu text-xs font-bold flex items-center justify-center gap-2">
+                    <i data-lucide="file-check-2" class="w-4 h-4"></i> 合否結果閲覧
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. ヒーローセクション（スッキリとしたメインビジュアル＆重要導線カード） -->
+    <section class="bg-gradient-to-br from-aitetsu via-aitetsu to-aitetsuDark text-white pt-12 pb-20 lg:pt-16 lg:pb-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                <!-- 左側：キャッチコピーと検定概要 -->
+                <div class="lg:col-span-7 space-y-5">
+                    <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-md px-3.5 py-1.5 text-xs font-bold">
+                        <span class="w-2 h-2 rounded-full bg-kincha"></span>
+                        <span>2026年度 第3回検定 個人・団体申込受付中</span>
+                    </div>
+
+                    <h1 class="font-serif-jp font-bold text-3xl sm:text-4xl lg:text-[42px] leading-[1.35] tracking-tight">
+                        日本の宝物を確かに。<br>日本の淫夢を世界に。
+                    </h1>
+
+                    <p class="text-sm sm:text-base text-white/85 leading-relaxed max-w-2xl">
+                        野獣先輩である「田所浩二」について、淫夢語録について。<br class="hidden sm:inline">
+                        様々な専門分野の知識・及び咆哮などの技能を試験し、評価することができます。
+                    </p>
+
+                    <div class="pt-2 flex flex-wrap gap-6 text-xs text-white/80 border-t border-white/15">
+                        <div>
+                            <span class="block text-white/60">対象級</span>
+                            <span class="font-bold text-sm text-white">1級・準1級・2級・3級・4級・5級</span>
+                        </div>
+                        <div>
+                            <span class="block text-white/60">実施形式</span>
+                            <span class="font-bold text-sm text-white">全国47都道府県 公開会場 / 団体準会場</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右側：第18回検定 試験要項ボックス -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white text-sumi rounded-xl p-6 sm:p-7 shadow-xl border-t-4 border-kincha">
+                        <div class="flex items-center justify-between border-b border-gray-200 pb-3.5 mb-4">
+                            <span class="font-serif-jp font-bold text-lg text-aitetsu">第3回 検定試験要項</span>
+                            <span class="bg-enji text-white text-xs font-bold px-2.5 py-1 rounded">受付中</span>
+                        </div>
+
+                        <dl class="space-y-3 text-sm">
+                            <div class="flex justify-between py-1 border-b border-gray-100">
+                                <dt class="text-usuzumi font-medium">インターネット受付期間</dt>
+                                <dd class="font-bold text-sumi text-right">2026年11月2日(月)〜<br><span class="text-enji">12月18日(金) 17:00まで</span></dd>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-gray-100">
+                                <dt class="text-usuzumi font-medium">一次試験日（筆記）</dt>
+                                <dd class="font-bold text-aitetsu">2027年1月24日(日)</dd>
+                            </div>
+                            <div class="flex justify-between py-1">
+                                <dt class="text-usuzumi font-medium">二次試験日（1級・準1級）</dt>
+                                <dd class="font-bold text-sumi">2027年2月21日(日)</dd>
+                            </div>
+                        </dl>
+
+                        <div class="mt-6">
+                            <button onclick="openModal('applyModal', 'individual')" class="w-full py-3.5 px-4 rounded-lg bg-matsuba hover:bg-matsubaDark text-white font-bold text-sm shadow-sm transition flex items-center justify-center gap-2">
+                                <span>第3回検定に申し込む（個人）</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ヒーロー直下の3つの大きなクイックアクションカード -->
+    <section id="quick-guide" class="-mt-10 relative z-10 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+                <!-- カード1：受験を申し込む -->
+                <button onclick="openModal('applyModal', 'individual')" class="text-left bg-white rounded-xl p-6 shadow-md border border-gray-200 hover:border-matsuba hover:shadow-lg transition group flex items-start justify-between gap-4">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-lg bg-matsuba/10 text-matsuba flex items-center justify-center shrink-0 group-hover:bg-matsuba group-hover:text-white transition">
+                            <i data-lucide="pen-square" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-matsuba mb-1">個人・団体受付</div>
+                            <h2 class="font-serif-jp font-bold text-lg text-sumi group-hover:text-matsuba transition">受験を申し込む</h2>
+                            <p class="text-xs text-usuzumi mt-1.5 leading-relaxed">インターネットからの個人申込、および学校・企業様の団体申込手続きはこちら。</p>
+                        </div>
+                    </div>
+                    <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-matsuba shrink-0 mt-1 transition"></i>
+                </button>
+
+                <!-- カード2：合否結果を見る -->
+                <button onclick="openModal('resultModal')" class="text-left bg-white rounded-xl p-6 shadow-md border border-gray-200 hover:border-aitetsu hover:shadow-lg transition group flex items-start justify-between gap-4">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-lg bg-aitetsu/10 text-aitetsu flex items-center justify-center shrink-0 group-hover:bg-aitetsu group-hover:text-white transition">
+                            <i data-lucide="award" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-aitetsu mb-1">Web合否閲覧サービス</div>
+                            <h2 class="font-serif-jp font-bold text-lg text-sumi group-hover:text-aitetsu transition">合否結果を見る</h2>
+                            <p class="text-xs text-usuzumi mt-1.5 leading-relaxed">受験番号と暗証番号を入力して、一次・二次試験の合否および成績表を確認できます。</p>
+                        </div>
+                    </div>
+                    <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-aitetsu shrink-0 mt-1 transition"></i>
+                </button>
+
+                <!-- カード3：試験日程・会場を調べる -->
+                <a href="#schedule" class="text-left bg-white rounded-xl p-6 shadow-md border border-gray-200 hover:border-kincha hover:shadow-lg transition group flex items-start justify-between gap-4">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-lg bg-kincha/15 text-kincha flex items-center justify-center shrink-0 group-hover:bg-kincha group-hover:text-white transition">
+                            <i data-lucide="calendar-days" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-kincha mb-1">2026・2027年度スケジュール</div>
+                            <h2 class="font-serif-jp font-bold text-lg text-sumi group-hover:text-kincha transition">試験日程・会場を調べる</h2>
+                            <p class="text-xs text-usuzumi mt-1.5 leading-relaxed">年間スケジュール、全国47都道府県の公開会場一覧、各級の検定料をご案内します。</p>
+                        </div>
+                    </div>
+                    <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-kincha shrink-0 mt-1 transition"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 重要なお知らせ・ニュース一覧 -->
+    <section id="news" class="py-12 lg:py-16 bg-white border-t border-b border-gray-200">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b-2 border-aitetsu">
+                <div class="flex items-center gap-3">
+                    <span class="w-1.5 h-6 bg-aitetsu rounded-sm"></span>
+                    <h2 class="font-serif-jp font-bold text-xl sm:text-2xl text-aitetsu">重要なお知らせ・新着情報</h2>
+                </div>
+
+                <!-- カテゴリタブ切り替え -->
+                <div class="flex flex-wrap gap-1.5" id="newsTabs">
+                    <button data-cat="all" class="news-tab active px-3.5 py-1.5 rounded text-xs font-bold bg-aitetsu text-white transition">すべて</button>
+                    <button data-cat="exam" class="news-tab px-3.5 py-1.5 rounded text-xs font-bold bg-kinari text-sumi border border-gray-200 hover:bg-gray-100 transition">試験情報</button>
+                    <button data-cat="important" class="news-tab px-3.5 py-1.5 rounded text-xs font-bold bg-kinari text-sumi border border-gray-200 hover:bg-gray-100 transition">重要</button>
+                    <button data-cat="group" class="news-tab px-3.5 py-1.5 rounded text-xs font-bold bg-kinari text-sumi border border-gray-200 hover:bg-gray-100 transition">団体向け</button>
+                </div>
+            </div>
+
+            <!-- お知らせリスト -->
+            <div id="newsList" class="divide-y divide-gray-200">
+                <!-- JSで動的にレンダリング -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 試験日程・検定料（一目でわかる一覧表） -->
+    <section id="schedule" class="py-14 lg:py-20 bg-kinari">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-8">
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="w-1.5 h-6 bg-aitetsu rounded-sm"></span>
+                    <h2 class="font-serif-jp font-bold text-2xl sm:text-3xl text-aitetsu">試験日程・検定料</h2>
+                </div>
+                <p class="text-sm text-usuzumi">
+                    検定は年3回実施いたします。個人受験は全国47都道府県の公開会場、団体受験は学校・企業等の準会場にて受験可能です。
+                </p>
+            </div>
+
+            <!-- 試験日程テーブル -->
+            <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden mb-10">
+                <div class="bg-aitetsu text-white px-5 py-3 text-sm font-bold flex items-center justify-between">
+                    <span>2026年度〜2027年度 検定実施スケジュール</span>
+                    <span class="text-xs font-normal text-white/80">※横スクロールで全項目をご確認いただけます</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse min-w-[760px] text-sm">
+                        <thead>
+                            <tr class="bg-gray-50 border-b border-gray-200 text-aitetsu font-bold">
+                                <th class="py-3.5 px-5">実施回</th>
+                                <th class="py-3.5 px-5">申込受付期間（インターネット）</th>
+                                <th class="py-3.5 px-5">一次試験日（全級）</th>
+                                <th class="py-3.5 px-5">二次試験日（1級・準1級）</th>
+                                <th class="py-3.5 px-5">Web合否発表日</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="bg-matsuba/5">
+                                <td class="py-4 px-5">
+                                    <span class="font-bold text-aitetsu block">2026年度 第3回</span>
+                                    <span class="inline-block mt-1 px-2 py-0.5 rounded bg-enji text-white text-[11px] font-bold">試験運用中</span>
+                                </td>
+                                <td class="py-4 px-5">
+                                    2026年11月2日（月）〜<br>
+                                    <span class="font-bold text-enji">2026年12月18日（金）</span>
+                                </td>
+                                <td class="py-4 px-5 font-bold text-aitetsu">2027年1月24日（日）</td>
+                                <td class="py-4 px-5">2027年2月21日（日）</td>
+                                <td class="py-4 px-5 text-xs leading-relaxed">
+                                    一次：2027年2月8日（月）<br>
+                                    二次：2027年3月4日（木）
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 検定料一覧コンパクト表 -->
+            <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                <div class="bg-gray-50 border-b border-gray-200 px-5 py-3 text-sm font-bold text-aitetsu">
+                    検定料一覧（税込）
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-center border-collapse min-w-[600px] text-sm">
+                        <thead>
+                            <tr class="border-b border-gray-200 bg-white text-usuzumi text-xs">
+                                <th class="py-3 px-4 font-bold text-left bg-gray-50/70">受験区分</th>
+                                <th class="py-3 px-4 font-bold text-aitetsu">1級</th>
+                                <th class="py-3 px-4 font-bold text-aitetsu">準1級</th>
+                                <th class="py-3 px-4 font-bold text-aitetsu">2級</th>
+                                <th class="py-3 px-4 font-bold text-aitetsu">3級</th>
+                                <th class="py-3 px-4 font-bold text-aitetsu">4級</th>
+                                <th class="py-3 px-4 font-bold text-aitetsu">5級</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="py-3.5 px-4 font-bold text-left bg-gray-50/70">個人受験（公開会場）</td>
+                                <td class="py-3.5 px-4 font-bold">9,500円</td>
+                                <td class="py-3.5 px-4 font-bold">7,200円</td>
+                                <td class="py-3.5 px-4 font-bold">5,800円</td>
+                                <td class="py-3.5 px-4 font-bold">4,500円</td>
+                                <td class="py-3.5 px-4 font-bold">3,200円</td>
+                                <td class="py-3.5 px-4 font-bold">2,500円</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3.5 px-4 font-bold text-left bg-gray-50/70">団体受験（準会場）</td>
+                                <td class="py-3.5 px-4 text-usuzumi">―（※1）</td>
+                                <td class="py-3.5 px-4">6,500円</td>
+                                <td class="py-3.5 px-4">4,900円</td>
+                                <td class="py-3.5 px-4">3,800円</td>
+                                <td class="py-3.5 px-4">2,700円</td>
+                                <td class="py-3.5 px-4">2,000円</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <p class="text-xs text-usuzumi mt-2.5">
+                ※1：1級は公開会場のみでの実施となります。団体でお申し込みの場合も、1級受験者は公開会場での受験となります。
+            </p>
+        </div>
+    </section>
+
+    <!-- 6. 各級の目安・出題内容（タブ切り替え＆すっきりした表組） -->
+    <section id="grades" class="py-14 lg:py-20 bg-white border-t border-b border-gray-200">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-8">
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="w-1.5 h-6 bg-aitetsu rounded-sm"></span>
+                    <h2 class="font-serif-jp font-bold text-2xl sm:text-3xl text-aitetsu">各級の目安・試験内容</h2>
+                </div>
+                <p class="text-sm text-usuzumi">
+                    入門レベルの5級から、高度な専門知識と所作・伝達力を問う1級まで、6段階の級を設定しています。タブを選択して詳細をご確認ください。
+                </p>
+            </div>
+
+            <!-- 6段階の級タブ -->
+            <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 mb-6" id="gradeTabs">
+                <button data-grade="1" class="grade-tab py-3 px-2 rounded-lg font-serif-jp font-bold text-base border border-gray-300 bg-kinari text-sumi hover:border-aitetsu transition">1級</button>
+                <button data-grade="pre1" class="grade-tab py-3 px-2 rounded-lg font-serif-jp font-bold text-base border border-gray-300 bg-kinari text-sumi hover:border-aitetsu transition">準1級</button>
+                <button data-grade="2" class="grade-tab active py-3 px-2 rounded-lg font-serif-jp font-bold text-base border border-aitetsu bg-aitetsu text-white shadow-sm transition">2級</button>
+                <button data-grade="3" class="grade-tab py-3 px-2 rounded-lg font-serif-jp font-bold text-base border border-gray-300 bg-kinari text-sumi hover:border-aitetsu transition">3級</button>
+                <button data-grade="4" class="grade-tab py-3 px-2 rounded-lg font-serif-jp font-bold text-base border border-gray-300 bg-kinari text-sumi hover:border-aitetsu transition">4級</button>
+                <button data-grade="5" class="grade-tab py-3 px-2 rounded-lg font-serif-jp font-bold text-base border border-gray-300 bg-kinari text-sumi hover:border-aitetsu transition">5級</button>
+            </div>
+
+            <!-- 各級の詳細テーブルコンテナ -->
+            <div id="gradeDetailContainer" class="bg-white rounded-xl border border-gray-300 shadow-sm overflow-hidden">
+                <!-- JSで動的に描画 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. 学習サポート・サンプル問題体験 -->
+    <section id="study" class="py-14 lg:py-20 bg-kinari">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="w-1.5 h-6 bg-aitetsu rounded-sm"></span>
+                    <h2 class="font-serif-jp font-bold text-2xl sm:text-3xl text-aitetsu">学習サポート・サンプル問題体験</h2>
+                </div>
+                <p class="text-sm text-usuzumi">
+                    公式テキスト・過去問題集のご案内と、実際の試験問題を体験できるWebサンプル問題（全3問）をご用意しています。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- 左カラム（5/12）：公式教材案内 -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                        <div class="flex items-start gap-4">
+                            <div class="w-16 h-20 rounded bg-aitetsu text-white flex flex-col items-center justify-center shrink-0 p-2 text-center border-l-4 border-kincha">
+                                <span class="text-[10px] text-white/80">協会公式</span>
+                                <span class="font-serif-jp font-bold text-xs mt-1 leading-tight">公式<br>テキスト</span>
+                            </div>
+                            <div>
+                                <span class="inline-block text-[11px] font-bold text-aitetsu bg-aitetsu/10 px-2 py-0.5 rounded mb-1">改訂新版</span>
+                                <h3 class="font-serif-jp font-bold text-base text-sumi">日本文化・伝統工芸検定 公式テキスト（各級対応）</h3>
+                                <p class="text-xs text-usuzumi mt-1.5 leading-relaxed">
+                                    出題範囲となる伝統工芸品・年中行事・礼法・日本史の要点を写真や図版とともに体系的に解説した公式教本です。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                        <div class="flex items-start gap-4">
+                            <div class="w-16 h-20 rounded bg-matsuba text-white flex flex-col items-center justify-center shrink-0 p-2 text-center border-l-4 border-kincha">
+                                <span class="text-[10px] text-white/80">過去3回分</span>
+                                <span class="font-serif-jp font-bold text-xs mt-1 leading-tight">公式<br>過去問題集</span>
+                            </div>
+                            <div>
+                                <span class="inline-block text-[11px] font-bold text-matsuba bg-matsuba/10 px-2 py-0.5 rounded mb-1">全問解説付き</span>
+                                <h3 class="font-serif-jp font-bold text-base text-sumi">日文検 過去問題集（1級〜5級）</h3>
+                                <p class="text-xs text-usuzumi mt-1.5 leading-relaxed">
+                                    直近3回分の本試験問題と解答・詳細な解説を収録。出題傾向の把握や試験直前の総仕上げに最適です。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右カラム（7/12）：Webサンプル問題（3問） -->
+                <div class="lg:col-span-7">
+                    <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                        <div class="bg-aitetsu text-white px-6 py-4 flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="help-circle" class="w-5 h-5 text-kincha"></i>
+                                <h3 class="font-serif-jp font-bold text-base sm:text-lg">Webサンプル問題体験（全3問）</h3>
+                            </div>
+                            <span id="quizProgressBadge" class="text-xs bg-white/15 px-3 py-1 rounded-full font-bold">第 1 問 / 3 問</span>
+                        </div>
+
+                        <div class="p-6 sm:p-8" id="quizBody">
+                            <!-- 問題表示エリア -->
+                            <div id="quizQuestionArea">
+                                <div class="mb-3">
+                                    <span id="quizLevelTag" class="inline-block text-xs font-bold text-aitetsu bg-kinari border border-gray-300 px-2.5 py-1 rounded">
+                                        3級レベル（伝統工芸）
+                                    </span>
+                                </div>
+                                <p id="quizQuestionText" class="font-bold text-base text-sumi leading-relaxed mb-6">
+                                    <!-- JSで挿入 -->
+                                </p>
+
+                                <div id="quizOptionsContainer" class="space-y-2.5">
+                                    <!-- JSで挿入 -->
+                                </div>
+                            </div>
+
+                            <!-- 即時解説ボックス -->
+                            <div id="quizExplanationBox" class="hidden mt-6 p-5 rounded-lg bg-kinari border border-gray-300">
+                                <div id="quizResultTitle" class="font-bold text-sm mb-2 flex items-center gap-1.5"></div>
+                                <p id="quizExplanationBody" class="text-xs sm:text-sm text-sumi leading-relaxed"></p>
+                                <div class="mt-4 text-right">
+                                    <button id="quizNextButton" onclick="nextQuizQuestion()" class="px-5 py-2 rounded-lg bg-aitetsu hover:bg-aitetsuDark text-white text-xs font-bold transition">
+                                        次の問題へ
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- 結果サマリー -->
+                            <div id="quizSummaryArea" class="hidden text-center py-4 space-y-4">
+                                <div class="w-12 h-12 rounded-full bg-matsuba/10 text-matsuba flex items-center justify-center mx-auto">
+                                    <i data-lucide="check-circle-2" class="w-7 h-7"></i>
+                                </div>
+                                <h4 class="font-serif-jp font-bold text-xl text-aitetsu">サンプル問題 結果</h4>
+                                <div id="quizScoreText" class="text-2xl font-bold text-matsuba">3問中 3問正解</div>
+                                <p id="quizAdviceText" class="text-xs sm:text-sm text-usuzumi max-w-md mx-auto leading-relaxed"></p>
+                                <div class="pt-3 flex flex-wrap justify-center gap-3">
+                                    <button onclick="restartQuiz()" class="px-5 py-2.5 rounded-lg border border-gray-300 text-sumi hover:bg-gray-50 text-xs font-bold transition">
+                                        もう一度解く
+                                    </button>
+                                    <button onclick="openModal('applyModal', 'individual')" class="px-5 py-2.5 rounded-lg bg-matsuba hover:bg-matsubaDark text-white text-xs font-bold transition">
+                                        検定に申し込む
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. 検定について・よくある質問（About & FAQ） -->
+    <section id="about" class="py-14 lg:py-20 bg-white border-t border-gray-200">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            
+            <!-- 検定について（簡潔な3つの特長） -->
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="w-1.5 h-6 bg-aitetsu rounded-sm"></span>
+                    <h2 class="font-serif-jp font-bold text-2xl sm:text-3xl text-aitetsu">日本文化・伝統工芸検定（日文検）について</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-6 rounded-xl bg-kinari border border-gray-200">
+                        <div class="text-xs font-bold text-kincha mb-1">特長 01</div>
+                        <h3 class="font-serif-jp font-bold text-lg text-aitetsu mb-2.5">体系的な出題範囲</h3>
+                        <p class="text-xs sm:text-sm text-usuzumi leading-relaxed">
+                            伝統工芸品（陶磁器・漆器・染織など）、年中行事、冠婚葬祭の礼法、茶道・華道・建築まで、日本文化を幅広く網羅した公的な審査基準を設けています。
+                        </p>
+                    </div>
+                    <div class="p-6 rounded-xl bg-kinari border border-gray-200">
+                        <div class="text-xs font-bold text-kincha mb-1">特長 02</div>
+                        <h3 class="font-serif-jp font-bold text-lg text-aitetsu mb-2.5">進学・就職での評価</h3>
+                        <p class="text-xs sm:text-sm text-usuzumi leading-relaxed">
+                            全国の大学・短期大学の総合型選抜や、観光・宿泊・百貨店・伝統産業関連企業における教養・接客マナーの証明として広く活用されています。
+                        </p>
+                    </div>
+                    <div class="p-6 rounded-xl bg-kinari border border-gray-200">
+                        <div class="text-xs font-bold text-kincha mb-1">特長 03</div>
+                        <h3 class="font-serif-jp font-bold text-lg text-aitetsu mb-2.5">全国47都道府県で実施</h3>
+                        <p class="text-xs sm:text-sm text-usuzumi leading-relaxed">
+                            年3回の公開会場試験を全国すべての都道府県で実施。また、学校や企業単位で実施できる団体準会場制度も充実しています。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- よくある質問 -->
+            <div id="faq">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="w-1.5 h-6 bg-aitetsu rounded-sm"></span>
+                    <h2 class="font-serif-jp font-bold text-2xl sm:text-3xl text-aitetsu">よくある質問</h2>
+                </div>
+
+                <div class="divide-y divide-gray-200 border-t border-b border-gray-200">
+                    <div class="faq-item">
+                        <button class="faq-trigger w-full text-left py-4 px-2 flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-sumi hover:text-aitetsu transition">
+                            <span class="flex items-center gap-3">
+                                <span class="text-aitetsu font-serif-jp font-bold">Q.</span>
+                                <span>受験資格に年齢や学歴の制限はありますか？</span>
+                            </span>
+                            <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-usuzumi shrink-0 transition-transform duration-200"></i>
+                        </button>
+                        <div class="faq-answer px-2 text-xs sm:text-sm text-usuzumi leading-relaxed">
+                            <div class="pb-4 pl-7">
+                                年齢・学歴・国籍などの制限は一切ございません。どなたでもご希望の級から受験いただけます（1級・準1級の二次試験は、一次試験合格者が対象です）。
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-trigger w-full text-left py-4 px-2 flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-sumi hover:text-aitetsu transition">
+                            <span class="flex items-center gap-3">
+                                <span class="text-aitetsu font-serif-jp font-bold">Q.</span>
+                                <span>同じ試験日に異なる級を併願することはできますか？</span>
+                            </span>
+                            <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-usuzumi shrink-0 transition-transform duration-200"></i>
+                        </button>
+                        <div class="faq-answer px-2 text-xs sm:text-sm text-usuzumi leading-relaxed">
+                            <div class="pb-4 pl-7">
+                                はい、隣接する2つの級（例：3級と2級、2級と準1級など）に限り併願受験が可能です。午前実施級と午後実施級の組み合わせでお申し込みください。
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-trigger w-full text-left py-4 px-2 flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-sumi hover:text-aitetsu transition">
+                            <span class="flex items-center gap-3">
+                                <span class="text-aitetsu font-serif-jp font-bold">Q.</span>
+                                <span>合格証明書の発行手続きについて教えてください。</span>
+                            </span>
+                            <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-usuzumi shrink-0 transition-transform duration-200"></i>
+                        </button>
+                        <div class="faq-answer px-2 text-xs sm:text-sm text-usuzumi leading-relaxed">
+                            <div class="pb-4 pl-7">
+                                合格者には合格発表日から約2週間後に「合格証書」を郵送いたします。入学願書や就職活動等で別途「合格証明書（和文・英文）」が必要な場合は、合否結果閲覧ページよりオンライン申請が可能です。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. フッター -->
+    <footer id="footer-contact" class="bg-aitetsuDark text-white/85 pt-14 pb-10 border-t-4 border-kincha">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-10 border-b border-white/15">
+                <!-- 協会概要 -->
+                <div class="space-y-3">
+                    <div class="font-serif-jp font-bold text-lg text-white">公益財団法人 日本淫夢・野獣検定協会</div>
+                    <p class="text-xs leading-relaxed text-white/75">
+                        〒102-0074<br>
+                        田所県浩二市域杉町45-19<br>
+                        検定運営事務局：072-1919-4545<br>
+                        （受付時間：平日 9:30〜17:30 ※土日祝・年末年始を除く）
+                    </p>
+                    <!-- SNS公式アカウント -->
+                    <div class="pt-2 flex items-center gap-3">
+                        <a href="#" aria-label="公式X" class="w-8 h-8 rounded bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition">
+                            <span class="font-bold text-xs">X</span>
+                        </a>
+                        <a href="#" aria-label="公式YouTube" class="w-8 h-8 rounded bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition">
+                            <i data-lucide="youtube" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#" aria-label="公式Instagram" class="w-8 h-8 rounded bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition">
+                            <i data-lucide="instagram" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 検定情報 -->
+                <div>
+                    <h3 class="font-bold text-white text-sm mb-3.5 border-l-2 border-kincha pl-2.5">検定情報</h3>
+                    <ul class="space-y-2 text-xs text-white/75">
+                        <li><a href="#about" class="hover:text-white transition">検定について</a></li>
+                        <li><a href="#schedule" class="hover:text-white transition">試験日程・検定料一覧</a></li>
+                        <li><a href="#grades" class="hover:text-white transition">各級の目安・審査基準</a></li>
+                        <li><a href="#study" class="hover:text-white transition">公式テキスト・サンプル問題</a></li>
+                    </ul>
+                </div>
+
+                <!-- お申し込み・各種手続き -->
+                <div>
+                    <h3 class="font-bold text-white text-sm mb-3.5 border-l-2 border-kincha pl-2.5">お申し込み・結果確認</h3>
+                    <ul class="space-y-2 text-xs text-white/75">
+                        <li><button onclick="openModal('applyModal', 'individual')" class="hover:text-white transition">個人のお申し込み</button></li>
+                        <li><button onclick="openModal('applyModal', 'group')" class="hover:text-white transition">団体のお申し込み（学校・企業）</button></li>
+                        <li><button onclick="openModal('resultModal')" class="hover:text-white transition">Web合否結果閲覧・証明書発行</button></li>
+                        <li><a href="#faq" class="hover:text-white transition">よくある質問</a></li>
+                    </ul>
+                </div>
+
+                <!-- 法人情報・規約 -->
+                <div>
+                    <h3 class="font-bold text-white text-sm mb-3.5 border-l-2 border-kincha pl-2.5">協会概要・規約</h3>
+                    <ul class="space-y-2 text-xs text-white/75">
+                        <li><a href="#" class="hover:text-white transition">協会概要・情報公開</a></li>
+                        <li><a href="#" class="hover:text-white transition">プライバシーポリシー（個人情報保護方針）</a></li>
+                        <li><a href="#" class="hover:text-white transition">特定商取引法に基づく表記</a></li>
+                        <li><a href="#" class="hover:text-white transition">サイトマップ</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-white/60">
+                <p>&copy; 2026 公益財団法人 日本文化検定協会 All Rights Reserved.</p>
+                <p>日本文化・伝統工芸検定（日文検）公式サイト</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- モーダル1：受験申込ウィンドウ -->
+    <!-- ========================================== -->
+    <div id="applyModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-xs p-4">
+        <div class="bg-white rounded-xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-200">
+            <div class="bg-aitetsu text-white px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+                <h3 class="font-serif-jp font-bold text-lg">2026年度 第3回検定 受験申込（デモ）</h3>
+                <button onclick="closeModal('applyModal')" class="text-white/80 hover:text-white p-1" aria-label="閉じる">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <form id="applyForm" onsubmit="handleApplySubmit(event)" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-sumi mb-1.5">お申し込み区分</label>
+                    <div class="grid grid-cols-2 gap-2.5">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="applyType" value="individual" checked class="peer sr-only">
+                            <div class="text-center py-2.5 px-3 rounded-lg border border-gray-300 bg-kinari peer-checked:bg-matsuba peer-checked:text-white peer-checked:border-matsuba text-xs font-bold transition">
+                                個人のお申し込み
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="applyType" value="group" class="peer sr-only">
+                            <div class="text-center py-2.5 px-3 rounded-lg border border-gray-300 bg-kinari peer-checked:bg-aitetsu peer-checked:text-white peer-checked:border-aitetsu text-xs font-bold transition">
+                                団体のお申し込み
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-sumi mb-1">受験希望級</label>
+                    <select required class="w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2.5 text-sm focus:outline-none focus:border-aitetsu">
+                        <option value="2">2級（個人：5,800円 / 団体：4,900円）</option>
+                        <option value="3">3級（個人：4,500円 / 団体：3,800円）</option>
+                        <option value="pre1">準1級（個人：7,200円 / 団体：6,500円）</option>
+                        <option value="1">1級（個人：9,500円）</option>
+                        <option value="4">4級（個人：3,200円 / 団体：2,700円）</option>
+                        <option value="5">5級（個人：2,500円 / 団体：2,000円）</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-sumi mb-1">希望受験地</label>
+                    <select required class="w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2.5 text-sm focus:outline-none focus:border-aitetsu">
+                        <option value="tokyo">東京都（千代田区・新宿区エリア）</option>
+                        <option value="kanagawa">神奈川県（横浜市エリア）</option>
+                        <option value="aichi">愛知県（名古屋市エリア）</option>
+                        <option value="kyoto">京都府（京都市エリア）</option>
+                        <option value="osaka">大阪府（大阪市エリア）</option>
+                        <option value="fukuoka">福岡県（福岡市エリア）</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-sumi mb-1">氏名（漢字）</label>
+                        <input type="text" required placeholder="例：山田 花子" class="w-full rounded-lg border border-gray-300 px-3.5 py-2 text-sm focus:outline-none focus:border-aitetsu">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-sumi mb-1">フリガナ</label>
+                        <input type="text" required placeholder="例：ヤマダ ハナコ" class="w-full rounded-lg border border-gray-300 px-3.5 py-2 text-sm focus:outline-none focus:border-aitetsu">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-sumi mb-1">メールアドレス</label>
+                    <input type="email" required placeholder="example@nichibunken.or.jp" class="w-full rounded-lg border border-gray-300 px-3.5 py-2 text-sm focus:outline-none focus:border-aitetsu">
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="w-full py-3 rounded-lg bg-matsuba hover:bg-matsubaDark text-white font-bold text-sm transition">
+                        申込内容を送信する（デモ）
+                    </button>
+                </div>
+            </form>
+
+            <!-- 完了画面 -->
+            <div id="applySuccess" class="hidden p-8 text-center space-y-4">
+                <div class="w-12 h-12 rounded-full bg-matsuba/10 text-matsuba flex items-center justify-center mx-auto">
+                    <i data-lucide="check" class="w-6 h-6"></i>
+                </div>
+                <h4 class="font-serif-jp font-bold text-lg text-aitetsu">仮申込を受け付けました</h4>
+                <p class="text-xs text-usuzumi leading-relaxed">
+                    ご登録のメールアドレスへ申込受付番号（NBK-18-04921）と検定料のお支払い手続き案内をお送りいたしました。
+                </p>
+                <button onclick="closeModal('applyModal')" class="px-6 py-2 rounded-lg bg-aitetsu text-white text-xs font-bold">
+                    閉じる
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- モーダル2：合否結果閲覧ウィンドウ -->
+    <!-- ========================================== -->
+    <div id="resultModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-xs p-4">
+        <div class="bg-white rounded-xl max-w-md w-full shadow-2xl border border-gray-200 overflow-hidden">
+            <div class="bg-aitetsu text-white px-6 py-4 flex items-center justify-between">
+                <h3 class="font-serif-jp font-bold text-lg">Web合否結果閲覧サービス</h3>
+                <button onclick="closeModal('resultModal')" class="text-white/80 hover:text-white p-1" aria-label="閉じる">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="p-6 space-y-4">
+                <p class="text-xs text-usuzumi leading-relaxed">
+                    受験票に記載の「受験番号（7桁）」および申込時に設定した「暗証番号（4桁）」をご入力ください。<br>
+                    <span class="text-aitetsu font-bold">※体験用デモ番号：受験番号「2026123」 / 暗証番号「1234」</span>
+                </p>
+
+                <form onsubmit="handleResultCheck(event)" class="space-y-3.5">
+                    <div>
+                        <label class="block text-xs font-bold text-sumi mb-1">受験番号（7桁）</label>
+                        <input type="text" id="examNumberInput" value="2026123" maxlength="7" required class="w-full rounded-lg border border-gray-300 px-3.5 py-2 text-sm font-mono tracking-wider">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-sumi mb-1">暗証番号（4桁）</label>
+                        <input type="password" id="examPinInput" value="1234" maxlength="4" required class="w-full rounded-lg border border-gray-300 px-3.5 py-2 text-sm font-mono tracking-wider">
+                    </div>
+                    <button type="submit" class="w-full py-3 rounded-lg bg-aitetsu hover:bg-aitetsuDark text-white font-bold text-sm transition">
+                        合否結果を表示する
+                    </button>
+                </form>
+
+                <!-- 合否判定結果エリア -->
+                <div id="resultDisplay" class="hidden rounded-lg bg-kinari p-5 border border-gray-300 text-center space-y-2">
+                    <div class="text-xs text-usuzumi">2026年度 第17回 日本文化・伝統工芸検定 2級</div>
+                    <div class="font-serif-jp font-bold text-2xl text-matsuba py-1">合 格</div>
+                    <div class="text-xs text-sumi border-t border-gray-200 pt-2">
+                        得点：<span class="font-bold">84点</span> / 100点（合格基準点：75点）
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript ロジック -->
+    <script>
+        lucide.createIcons();
+
+        // 1. モバイルメニュー制御
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // 2. お知らせリストデータ＆フィルタリング
+        const newsItems = [
+            { date: '2026.11.16', category: 'exam', label: '試験情報', title: '試験運用中です' },
+            { date: '2026.11.02', category: 'important', label: '重要', title: '試験運用中です。' },
+            { date: '2026.10.26', category: 'exam', label: '試験情報', title: '試験運用中です' },
+            { date: '2026.10.14', category: 'group', label: '団体向け', title: '試験運用中です' },
+            { date: '2026.09.28', category: 'important', label: '重要', title: '試験運用中です' }
+        ];
+
+        function renderNewsList(filter = 'all') {
+            const container = document.getElementById('newsList');
+            const filtered = filter === 'all' ? newsItems : newsItems.filter(item => item.category === filter);
+
+            container.innerHTML = filtered.map(item => {
+                let badgeClass = 'bg-aitetsu text-white';
+                if (item.category === 'important') badgeClass = 'bg-enji text-white';
+                if (item.category === 'group') badgeClass = 'bg-matsuba text-white';
+
+                return `
+                    <article class="py-4 px-2 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 hover:bg-kinari/60 transition">
+                        <div class="flex items-center gap-3 shrink-0">
+                            <time class="text-xs font-mono text-usuzumi">${item.date}</time>
+                            <span class="inline-block w-16 text-center text-[11px] font-bold py-0.5 rounded ${badgeClass}">${item.label}</span>
+                        </div>
+                        <a href="#news" onclick="event.preventDefault();" class="text-sm text-sumi hover:text-aitetsu hover:underline underline-offset-4 transition">
+                            ${item.title}
+                        </a>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        document.querySelectorAll('.news-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.news-tab').forEach(t => {
+                    t.classList.remove('active', 'bg-aitetsu', 'text-white');
+                    t.classList.add('bg-kinari', 'text-sumi', 'border', 'border-gray-200');
+                });
+                tab.classList.add('active', 'bg-aitetsu', 'text-white');
+                tab.classList.remove('bg-kinari', 'text-sumi', 'border', 'border-gray-200');
+                renderNewsList(tab.dataset.cat);
+            });
+        });
+        renderNewsList();
+
+        // 3. 各級の目安・出題内容（表組レンダリング）
+        const gradeDetails = {
+            '1': {
+                title: '1級',
+                subtitle: '淫夢社会で最も詳細な知識および技能を必要とするレベル',
+                level: '淫夢や野獣先輩へ礼儀および感謝をしっかりとわきまえ、実際に野獣先輩並のプレーを国際的にすることができる。',
+                format: '一次試験：マークシート＋記述式・小論文（100分） ／ 二次試験：面接・口頭試問および所作実技（約20分）',
+                criteria: '一次試験：80%以上の正答率 ／ 二次試験：審査基準の達成',
+                fee: '個人受験：9,500円（税込） ※公開会場のみ実施'
+            },
+            'pre1': {
+                title: '準1級',
+                subtitle: '淫夢社会での標準的な知識を必要とするレベル',
+                level: '淫夢や野獣先輩への礼儀および感謝をわきまえ、実際に野獣先輩とあついプレーを交わすことができる。',
+                format: '一次試験：マークシート＋一部記述式（80分） ／ 二次試験：面接・口頭試問（約15分）',
+                criteria: '一次試験：75%以上の正答率 ／ 二次試験：審査基準の達成',
+                fee: '個人受験：7,200円（税込） ／ 団体受験：6,500円（税込）'
+            },
+            '2': {
+                title: '2級',
+                subtitle: '淫夢社会での基礎的な知識を必要とするレベル',
+                level: '淫夢や野獣先輩などより詳細な知識を持ち、実際に発声するうえでの知識を持っている。',
+                format: 'マークシート四肢択一式（70分・全80問）※一次試験のみ',
+                criteria: '75%以上の正答率で合格',
+                fee: '個人受験：5,800円（税込） ／ 団体受験：4,900円（税込）'
+            },
+            '3': {
+                title: '3級',
+                subtitle: '淫夢や先輩などの詳細知識を必要とするレベル',
+                level: '淫夢や野獣先輩などの詳細な知識を持ち、マニアの間で使われている淫夢や語録および先輩についての情報を使うことができる。',
+                format: 'マークシート四肢択一式（60分・全70問）※一次試験のみ',
+                criteria: '70%以上の正答率で合格',
+                fee: '個人受験：4,500円（税込） ／ 団体受験：3,800円（税込）'
+            },
+            '4': {
+                title: '4級',
+                subtitle: '淫夢についてを知っていく入門レベル',
+                level:'淫夢についての標準知識を十分理解し、ネットなどで稀に使われる淫夢や語録などを利用できる。',
+                format: 'マークシート四肢択一式（50分・全50問）※一次試験のみ',
+                criteria: '70%以上の正答率で合格',
+                fee: '個人受験：3,200円（税込） ／ 団体受験：2,700円（税込）'
+            },
+            '5': {
+                title: '5級',
+                subtitle: '淫夢に親しむ初歩レベル',
+                level: '淫夢についての基礎知識を十分理解し、ネットなどで有名な淫夢や語録などを利用できる。',
+                format: 'マークシート三肢択一式（40分・全40問）※一次試験のみ',
+                criteria: '65%以上の正答率で合格',
+                fee: '個人受験：2,500円（税込） ／ 団体受験：2,000円（税込）'
+            }
+        };
+
+        function renderGradeTable(key) {
+            const g = gradeDetails[key];
+            const container = document.getElementById('gradeDetailContainer');
+            container.innerHTML = `
+                <div class="bg-kinari px-6 py-4 border-b border-gray-300 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div class="flex items-baseline gap-3">
+                        <span class="font-serif-jp font-bold text-2xl text-aitetsu">${g.title}</span>
+                        <span class="text-sm font-bold text-sumi">${g.subtitle}</span>
+                    </div>
+                </div>
+                <table class="w-full text-left border-collapse text-sm">
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <th class="py-4 px-6 bg-gray-50 font-bold text-aitetsu w-1/3 sm:w-1/4 align-top">レベルの目安</th>
+                            <td class="py-4 px-6 text-sumi leading-relaxed">${g.level}</td>
+                        </tr>
+                        <tr>
+                            <th class="py-4 px-6 bg-gray-50 font-bold text-aitetsu align-top">試験時間・形式</th>
+                            <td class="py-4 px-6 text-sumi leading-relaxed">${g.format}</td>
+                        </tr>
+                        <tr>
+                            <th class="py-4 px-6 bg-gray-50 font-bold text-aitetsu align-top">合格基準</th>
+                            <td class="py-4 px-6 text-sumi leading-relaxed">${g.criteria}</td>
+                        </tr>
+                        <tr>
+                            <th class="py-4 px-6 bg-gray-50 font-bold text-aitetsu align-top">検定料</th>
+                            <td class="py-4 px-6 font-bold text-sumi">${g.fee}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `;
+        }
+
+        document.querySelectorAll('.grade-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.grade-tab').forEach(t => {
+                    t.classList.remove('active', 'bg-aitetsu', 'text-white', 'border-aitetsu', 'shadow-sm');
+                    t.classList.add('bg-kinari', 'text-sumi', 'border-gray-300');
+                });
+                tab.classList.add('active', 'bg-aitetsu', 'text-white', 'border-aitetsu', 'shadow-sm');
+                tab.classList.remove('bg-kinari', 'text-sumi', 'border-gray-300');
+                renderGradeTable(tab.dataset.grade);
+            });
+        });
+        renderGradeTable('2');
+
+        // 4. Webサンプル問題ロジック
+        const sampleQuestions = [
+            {
+                tag: '3級レベル（田所浩二）',
+                question: '野獣先輩である田所浩二氏の正しいプロフィールを下から選びなさい。',
+                options: ['21歳・身長174cm・体重75kg', '24歳・身長170cm・体重75kg', '24歳・身長170cm・体重74kg', '21歳・身長170cm・体重74kg'],
+                answer: 1,
+                explanation: '正答例：2番の24歳・身長170cm・体重75kg。'
+            },
+            {
+                tag: '2級レベル（淫夢語録）',
+                question: '遠野とプレイしている際の野獣先輩の喘ぎ声として最も適切なものを下から選びなさい',
+                options: [
+                    'オォン！アォン！',
+                    'オァン！アフーン！',
+                    'イキスギィ！',
+                    'ヌッ！フッ！フッ！'
+                ],
+                answer: 0,
+                explanation: '正答例：1番のオォン！アォン！。遠野のフゥン!ホォン!ホォン!とセットである事が多い。'
+            },
+            {
+                tag: '準1級レベル（淫夢社会）',
+                question: '野獣先輩が脱糞する際に言い放った一言を選びなさい。',
+                options: ['あー、出ますねぇ', 'で、出ますよ...', '出ますよ', '出てますね'],
+                answer: 1,
+                explanation: '正答例：2番ので、出ますよ...。イチジク浣腸をされ脱糞する際に言い放った一言。ブッチッパ！とともに使われる。'
+            }
+        ];
+
+        let currentQIndex = 0;
+        let correctCount = 0;
+        let isAnswered = false;
+
+        function loadSampleQuiz() {
+            isAnswered = false;
+            const q = sampleQuestions[currentQIndex];
+            document.getElementById('quizProgressBadge').textContent = `第 ${currentQIndex + 1} 問 / ${sampleQuestions.length} 問`;
+            document.getElementById('quizLevelTag').textContent = q.tag;
+            document.getElementById('quizQuestionText').textContent = q.question;
+            document.getElementById('quizExplanationBox').classList.add('hidden');
+
+            const optionsHtml = q.options.map((opt, idx) => `
+                <button onclick="checkSampleAnswer(${idx})" class="sample-opt-btn w-full text-left p-3.5 rounded-lg border border-gray-300 bg-white hover:border-aitetsu hover:bg-kinari transition flex items-center gap-3 text-sm">
+                    <span class="w-6 h-6 rounded bg-gray-100 text-aitetsu font-bold flex items-center justify-center shrink-0 text-xs">
+                        ${idx + 1}
+                    </span>
+                    <span>${opt}</span>
+                </button>
+            `).join('');
+            document.getElementById('quizOptionsContainer').innerHTML = optionsHtml;
+        }
+
+        function checkSampleAnswer(selectedIdx) {
+            if (isAnswered) return;
+            isAnswered = true;
+
+            const q = sampleQuestions[currentQIndex];
+            const isCorrect = selectedIdx === q.answer;
+            if (isCorrect) correctCount++;
+
+            const btns = document.querySelectorAll('.sample-opt-btn');
+            btns.forEach((btn, idx) => {
+                btn.disabled = true;
+                if (idx === q.answer) {
+                    btn.classList.remove('bg-white', 'border-gray-300');
+                    btn.classList.add('bg-matsuba', 'text-white', 'border-matsuba', 'font-bold');
+                } else if (idx === selectedIdx && !isCorrect) {
+                    btn.classList.remove('bg-white', 'border-gray-300');
+                    btn.classList.add('bg-enji/10', 'border-enji', 'text-enji');
+                }
+            });
+
+            const titleEl = document.getElementById('quizResultTitle');
+            titleEl.innerHTML = isCorrect
+                ? '<span class="text-matsuba">〇 正解です</span>'
+                : '<span class="text-enji">× 不正解です</span>';
+
+            document.getElementById('quizExplanationBody').textContent = q.explanation;
+            document.getElementById('quizNextButton').textContent = currentQIndex < sampleQuestions.length - 1 ? '次の問題へ' : '結果を見る';
+            document.getElementById('quizExplanationBox').classList.remove('hidden');
+        }
+
+        function nextQuizQuestion() {
+            currentQIndex++;
+            if (currentQIndex < sampleQuestions.length) {
+                loadSampleQuiz();
+            } else {
+                document.getElementById('quizQuestionArea').classList.add('hidden');
+                document.getElementById('quizExplanationBox').classList.add('hidden');
+                document.getElementById('quizSummaryArea').classList.remove('hidden');
+                document.getElementById('quizScoreText').textContent = `${sampleQuestions.length}問中 ${correctCount}問正解`;
+
+                const advice = correctCount === 3
+                    ? '大変優秀な成績です。2級または準1級からの受験をおすすめいたします。'
+                    : correctCount === 2
+                        ? '基礎知識がしっかりと身についています。3級・2級の受験に向けて公式テキストで総仕上げを行いましょう。'
+                        : 'まずは4級・3級から基礎を体系的に学んでいただくことをおすすめいたします。';
+                document.getElementById('quizAdviceText').textContent = advice;
+            }
+        }
+
+        function restartQuiz() {
+            currentQIndex = 0;
+            correctCount = 0;
+            document.getElementById('quizSummaryArea').classList.add('hidden');
+            document.getElementById('quizQuestionArea').classList.remove('hidden');
+            loadSampleQuiz();
+        }
+        loadSampleQuiz();
+
+        // 5. FAQアコーディオン
+        document.querySelectorAll('.faq-trigger').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.closest('.faq-item').classList.toggle('active');
+            });
+        });
+
+        // 6. モーダル制御
+        function openModal(modalId, type = null) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            if (modalId === 'applyModal') {
+                document.getElementById('applyForm').classList.remove('hidden');
+                document.getElementById('applySuccess').classList.add('hidden');
+                if (type) {
+                    const radio = document.querySelector(`input[name="applyType"][value="${type}"]`);
+                    if (radio) radio.checked = true;
+                }
+            }
+            if (modalId === 'resultModal') {
+                document.getElementById('resultDisplay').classList.add('hidden');
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        document.querySelectorAll('#applyModal, #resultModal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal(modal.id);
+            });
+        });
+
+        function handleApplySubmit(e) {
+            e.preventDefault();
+            document.getElementById('applyForm').classList.add('hidden');
+            document.getElementById('applySuccess').classList.remove('hidden');
+        }
+
+        function handleResultCheck(e) {
+            e.preventDefault();
+            document.getElementById('resultDisplay').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
